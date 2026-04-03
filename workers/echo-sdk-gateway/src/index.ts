@@ -16,6 +16,7 @@ import { cors } from 'hono/cors';
 import type { Env, Envelope, AuthVariables } from './types';
 import { authMiddleware } from './utils/auth';
 import { rateLimitMiddleware } from './utils/rate-limit';
+import { scopeMiddleware } from './utils/scopes';
 import { success } from './utils/envelope';
 import { getOpenApiSpec } from './openapi';
 import engine from './routes/engine';
@@ -34,6 +35,7 @@ import agi from './routes/agi';
 import compose from './routes/compose';
 import data from './routes/data';
 import functions from './routes/functions';
+import services from './routes/services';
 import { handleScheduled } from './cron';
 import {
   brainPassthrough, swarmPassthrough, x200Passthrough, chatPassthrough,
@@ -51,11 +53,19 @@ const app = new Hono<{ Bindings: Env; Variables: AuthVariables }>();
 // Global middleware
 // ---------------------------------------------------------------------------
 
-// CORS — allow GPT Actions, browsers, and any client
+// H1 FIX: CORS — allowlist trusted origins instead of wildcard
 app.use(
   '*',
   cors({
-    origin: '*',
+    origin: (origin) => {
+      const ALLOWED = ['https://echo-ept.com', 'https://echo-op.com', 'https://echo-shield.echo-ept.com'];
+      // Allow exact match or *.echo-ept.com subdomains
+      if (ALLOWED.includes(origin)) return origin;
+      if (origin.endsWith('.echo-ept.com') && origin.startsWith('https://')) return origin;
+      // Allow ChatGPT Actions (no origin header) and server-to-server (no browser)
+      if (!origin) return 'https://echo-ept.com';
+      return ''; // Deny
+    },
     allowHeaders: ['Content-Type', 'X-Echo-API-Key', 'Authorization'],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     maxAge: 86400,
@@ -67,6 +77,9 @@ app.use('*', authMiddleware);
 
 // Rate limiting
 app.use('*', rateLimitMiddleware);
+
+// H4 FIX: Scope enforcement — checks auth_scopes against route requirements
+app.use('*', scopeMiddleware);
 
 // ---------------------------------------------------------------------------
 // Public routes (no auth required — handled by authMiddleware exempt list)
@@ -172,6 +185,7 @@ app.route('/agi', agi);
 app.route('/compose', compose);
 app.route('/data', data);
 app.route('/functions', functions);
+app.route('/services', services);       // Unified fleet proxy (15 workers)
 
 // ---------------------------------------------------------------------------
 // Passthrough proxy routes — expose FULL API surface of all workers

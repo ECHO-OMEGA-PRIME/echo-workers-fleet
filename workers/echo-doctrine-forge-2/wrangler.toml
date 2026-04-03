@@ -1,0 +1,51 @@
+name = "echo-doctrine-forge-2"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-engine-doctrines"
+database_id = "5eb5f53e-67a6-49da-a2b2-1ec8819096c4"
+
+[[d1_databases]]
+binding = "FORGE_DB"
+database_name = "echo-doctrine-forge"
+database_id = "f3de1a7d-c728-43da-ac75-db8acea8416f"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "5dc7fd96fa2341ae87959e2ea6ff4425"
+
+[[services]]
+binding = "AI_ORCHESTRATOR"
+service = "echo-ai-orchestrator"
+
+[[services]]
+binding = "SCANNER"
+service = "echo-343-scanner"
+
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "X200_SWARM"
+service = "echo-x200-swarm-brain"
+
+[triggers]
+crons = ["1-59/2 * * * *"]
+
+[vars]
+DOCTRINES_PER_ENGINE = "200"
+ENGINES_PER_CRON = "10"
+MIN_MANDATORY_YIELD = "3"
+MIN_QUALITY_SCORE = "6"
+RUNPOD_ENDPOINT_ID = "s46cg49icebw6w"

@@ -1,23 +1,51 @@
 name = "echo-speak-cloud"
-main = "src/index.ts"
+main = "src/auth-wrapper.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
+[ai]
+binding = "AI"
+
 [vars]
-VERSION = "2.2.0"
+ENVIRONMENT = "production"
+WORKER_VERSION = "2.2.0"
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "echo_metrics"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "echo-speak-cloud"
-database_id = "placeholder-update-with-actual-id"
+database_id = "e3710b89-e8be-4768-a58c-683dcb68939e"
 
 [[kv_namespaces]]
 binding = "CACHE"
-id = "placeholder-update-with-actual-id"
+id = "5c6ef5bc2e9c4170bb0a50ba3fe3c43a"
 
 [[r2_buckets]]
 binding = "MEDIA"
 bucket_name = "echo-prime-media"
+
+[[services]]
+binding = "ECHO_CHAT"
+service = "echo-chat"
+environment = "production"
+
+[[services]]
+binding = "SCANNER"
+service = "echo-343-scanner"
+environment = "production"
+
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+environment = "production"
+
+[[services]]
+binding = "SWARM"
+service = "echo-swarm-brain"
+environment = "production"
 
 [[durable_objects.bindings]]
 name = "VOICE_CONVERSATION"

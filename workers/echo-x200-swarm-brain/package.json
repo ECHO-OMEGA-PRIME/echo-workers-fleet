@@ -1,0 +1,21 @@
+{
+  "name": "echo-x200-swarm-brain",
+  "version": "1.0.0",
+  "description": "ECHO X200 Swarm Brain — 200-agent swarm intelligence with full sensory suite, voice, vision, hearing, conversational AI, and distributed cognition",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.0.0",
+    "typescript": "^5.0.0",
+    "wrangler": "^3.0.0"
+  },
+  "author": "Bobby Don McWilliams II",
+  "license": "PROPRIETARY"
+}

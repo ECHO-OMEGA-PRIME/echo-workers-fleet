@@ -417,7 +417,7 @@ export default {
     // Rate limiting (non-public routes)
     if (!PUBLIC_ROUTES.includes(pathname) && env.HOT) {
       try {
-        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const ip = request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
         const window = Math.floor(Date.now() / (RATE_LIMIT_WINDOW_SEC * 1000));
         const key = `rate:${ip}:${window}`;
         const count = parseInt((await env.HOT.get(key)) || "0");
@@ -430,14 +430,15 @@ export default {
         }
         await env.HOT.put(key, String(count + 1), { expirationTtl: RATE_LIMIT_WINDOW_SEC * 2 });
       } catch (e: any) {
-        log("warn", "Rate limit check failed", { error: e.message });
+        log("error", "Rate limit check failed — failing closed", { error: e.message });
+        return error("Rate limiting unavailable", 503);
       }
     }
 
     // Content-Length check for write methods
     if (["POST", "PUT", "DELETE"].includes(request.method)) {
-      if (parseInt(request.headers.get("Content-Length") || "0") > 1048576) {
-        return json({ error: "Payload too large", max_bytes: 1048576 }, 413);
+      if (parseInt(request.headers.get("Content-Length") || "0") > 262144) {
+        return json({ error: "Payload too large", max_bytes: 262144 }, 413);
       }
     }
 

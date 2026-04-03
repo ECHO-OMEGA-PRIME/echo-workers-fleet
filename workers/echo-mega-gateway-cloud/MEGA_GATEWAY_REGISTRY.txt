@@ -1,0 +1,524 @@
+═══════════════════════════════════════════════════════════════════════════════
+  ECHO MEGA GATEWAY CLOUD v2.0 — COMPLETE SERVER & TOOL REGISTRY
+  URL: https://echo-mega-gateway-cloud.bmcii1976.workers.dev
+  Total Servers: 1878 | Total Tools: 36,330 | Categories: 15
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─── AI_ML (247 servers, 4965 tools) ───
+│ a1111-api                                [ 18] A1111 Stable Diffusion API
+│ abacus-ai                                [ 18] Abacus.AI inference API
+│ ai21                                     [ 21] AI21 Labs — Jamba, Jurassic models
+│ akash-gpu                                [ 18] Akash GPU compute marketplace API
+│ amazon-bedrock-agents                    [ 22] AWS Bedrock Agents — autonomous AI agents
+│ amazon-bedrock-runtime                   [ 18] Amazon Bedrock Runtime API
+│ amazon-comprehend                        [ 22] AWS Comprehend — NLP text analysis
+│ amazon-polly                             [ 19] AWS Polly — text to speech
+│ amazon-rekognition                       [ 20] AWS Rekognition — image/video analysis
+│ amazon-sagemaker                         [ 22] AWS SageMaker — ML training/deployment
+│ amazon-textract                          [ 19] AWS Textract — document text extraction
+│ amazon-transcribe                        [ 22] AWS Transcribe — speech to text
+│ amazon-translate                         [ 19] AWS Translate — neural machine translation
+│ anthropic                                [ 23] Claude models — chat, vision, tools
+│ anyscale                                 [ 26] Anyscale — scalable model serving
+│ anyscale-api                             [ 18] Anyscale inference API
+│ anyword                                  [ 18] Anyword AI copywriting API
+│ arcade-ai                                [ 19] Arcade AI tool use platform API
+│ assemblyai                               [ 24] AssemblyAI — speech-to-text, audio intelligence
+│ autogen                                  [ 20] AutoGen multi-agent framework API
+│ automatic1111                            [ 18] Automatic1111 SD WebUI API
+│ aws-bedrock-api                          [ 21] AWS Bedrock foundation models API
+│ azure-cognitive-search                   [ 18] Azure Cognitive Search API
+│ azure-form-recognizer                    [ 22] Azure Form Recognizer — document AI
+│ azure-language                           [ 22] Azure Language Service — NLU, sentiment
+│ azure-openai-api                         [ 18] Azure OpenAI Service API
+│ azure-speech                             [ 22] Azure Speech Services — TTS/STT
+│ azure-translator                         [ 22] Azure Translator — machine translation
+│ azure-vision                             [ 22] Azure Computer Vision
+│ baichuan                                 [ 18] Baichuan AI model API
+│ banana_dev                               [ 21] Banana serverless GPU - models, inference, build, start
+│ banana-api                               [ 19] Banana.dev inference API
+│ banana-dev                               [ 20] Banana.dev GPU inference API
+│ baseten                                  [ 26] Baseten — custom model deployment
+│ baseten-api                              [ 21] Baseten model inference API
+│ beam                                     [ 22] Beam serverless GPU API
+│ bentoml                                  [ 20] BentoML model serving API
+│ bittensor                                [ 18] Bittensor decentralized AI API
+│ bland-ai                                 [ 18] Bland AI phone calling agent API
+│ braintrust                               [ 22] Braintrust — AI eval framework
+│ braintrust-ai                            [ 21] Braintrust AI evaluation API
+│ cartesia                                 [ 21] Cartesia — low-latency TTS
+│ cerebras                                 [ 18] Cerebras — fastest inference hardware
+│ cerebras-api                             [ 18] Cerebras inference API
+│ chroma                                   [ 23] Chroma — open-source embedding database
+│ chromadb                                 [ 22] ChromaDB vector database API
+│ civitai                                  [ 22] CivitAI model marketplace API
+│ clarifai                                 [ 21] Clarifai — visual AI platform
+│ claude-api                               [ 18] Anthropic Claude Messages API
+│ cleanlab                                 [ 18] Cleanlab data quality API
+│ cloudflare-ai                            [ 19] Cloudflare Workers AI API
+│ cloudflare-vectorize                     [ 18] Cloudflare Vectorize API
+│ cloudflare-workers-ai                    [ 18] Cloudflare Workers AI inference API
+│ codeium                                  [ 19] Codeium AI code completion API
+│ cohere                                   [ 21] Cohere Command, Embed, Rerank models
+│ cohere-api                               [ 18] Cohere Command and Embed API
+│ comet-api                                [ 21] Comet.ml experiment tracking API
+│ comet-ml                                 [ 22] Comet ML — experiment tracking
+│ comfyui-api                              [ 18] ComfyUI node-based AI API
+│ composio                                 [ 21] Composio AI tools integration API
+│ continue-dev                             [ 20] Continue.dev AI coding API
+│ copy-ai                                  [ 18] Copy.ai content generation API
+│ coreweave                                [ 21] CoreWeave GPU cloud API
+│ craiyon                                  [ 18] Craiyon AI image generation API
+│ crew-ai                                  [ 21] CrewAI agent framework API
+│ dagshub                                  [ 20] DagsHub ML collaboration API
+│ dall_e                                   [ 20] DALL-E image generation - generate, edit, variations, s
+│ deepeval                                 [ 19] DeepEval LLM testing API
+│ deepgram                                 [ 20] Deepgram — real-time speech recognition
+│ deepinfra                                [ 18] DeepInfra inference API
+│ deepseek                                 [ 20] DeepSeek V3, R1 — reasoning models
+│ deepseek-api                             [ 18] DeepSeek R1 and V3 API
+│ diffusers-api                            [ 18] HuggingFace Diffusers API
+│ dify                                     [ 22] Dify AI application platform API
+│ dust                                     [ 21] Dust AI assistant platform API
+│ dvc                                      [ 21] DVC data version control API
+│ e2b                                      [ 22] E2B AI code sandbox API
+│ elevenlabs                               [ 27] ElevenLabs — text-to-speech, voice cloning
+│ ernie-api                                [ 18] Baidu ERNIE AI model API
+│ exa-ai                                   [ 18] Exa AI neural search API
+│ fal_ai                                   [ 22] fal.ai serverless AI - image generation, video, LLMs, r
+│ fal-ai                                   [ 26] Fal.ai — fast image/video generation
+│ fal-api                                  [ 20] fal.ai serverless AI API
+│ fireworks                                [ 19] Fireworks.ai — fast open model inference
+│ fireworks_ai                             [ 20] Fireworks AI - chat, completions, embeddings, image gen
+│ fireworks-api                            [ 18] Fireworks AI inference API
+│ fixie-ai                                 [ 20] Fixie AI agent platform API
+│ flowise                                  [ 22] Flowise AI workflow builder API
+│ fluidstack                               [ 21] FluidStack GPU cloud API
+│ flux_ai                                  [ 22] Flux AI (Black Forest Labs) - image generation, inpaint
+│ flux-pro                                 [ 22] Flux Pro — image generation
+│ friendli-ai                              [ 18] Friendli AI inference API
+│ gcp-vertex                               [ 21] Google Vertex AI API
+│ gemini-api                               [ 18] Google Gemini API
+│ gensyn                                   [ 18] Gensyn decentralized ML training API
+│ golem                                    [ 18] Golem decentralized compute API
+│ google_gemini                            [ 22] Google Gemini API - generate content, embeddings, model
+│ google-cloud-documentai                  [ 22] GCP Document AI
+│ google-cloud-nlp                         [ 20] GCP Natural Language API
+│ google-cloud-speech                      [ 18] GCP Speech-to-Text
+│ google-cloud-translate                   [ 20] GCP Translation API
+│ google-cloud-tts                         [ 19] GCP Text-to-Speech
+│ google-cloud-vision                      [ 18] GCP Vision API — image analysis
+│ google-gemini                            [ 21] Gemini Pro, Ultra, Flash — multimodal
+│ google-natural-language                  [ 18] Google Cloud NLP API
+│ google-translate                         [ 18] Google Cloud Translation API
+│ google-vision                            [ 18] Google Cloud Vision API
+│ grok-api                                 [ 18] xAI Grok API
+│ groq                                     [ 20] Ultra-fast LLM inference — Llama, Mixtral, Gemma
+│ groq-api                                 [ 18] Groq fast inference API
+│ helicone                                 [ 19] Helicone — LLM observability
+│ heygen                                   [ 22] HeyGen — AI video avatars
+│ huggingface                              [ 21] HuggingFace Inference API — 200K+ models
+│ huggingface_api                          [ 20] Hugging Face Inference - models, datasets, spaces, infe
+│ humanloop                                [ 22] Humanloop LLM evaluation API
+│ hume-ai                                  [ 18] Hume AI emotion recognition API
+│ hyperbolic                               [ 18] Hyperbolic Labs inference API
+│ ideogram                                 [ 20] Ideogram — AI image generation
+│ invoke-ai                                [ 18] InvokeAI creative engine API
+│ io-net                                   [ 18] io.net decentralized GPU cluster API
+│ jan-ai                                   [ 20] Jan.ai local inference API
+│ jasper-api                               [ 18] Jasper AI content API
+│ koboldai                                 [ 19] KoboldAI text generation API
+│ kohya-ss                                 [ 18] Kohya SS training API
+│ label-studio                             [ 23] Label Studio data labeling API
+│ labelbox                                 [ 22] Labelbox data labeling - projects, datasets, labels, pr
+│ lambda-labs                              [ 21] Lambda Labs GPU cloud API
+│ langchain_hub                            [ 22] LangChain Hub - prompts, chains, tools, retrievers, age
+│ langfuse                                 [ 22] Langfuse — LLM observability
+│ langsmith                                [ 27] LangSmith — LLM observability
+│ leonardo_ai                              [ 22] Leonardo AI - image generation, models, datasets, textu
+│ leonardo-ai                              [ 19] Leonardo AI — creative AI
+│ lepton-ai                                [ 26] Lepton AI — serverless model hosting
+│ lepton-api                               [ 18] Lepton AI inference API
+│ lilypad                                  [ 18] Lilypad decentralized compute API
+│ litellm                                  [ 22] LiteLLM — unified LLM proxy
+│ llama-api                                [ 18] Meta Llama API
+│ llamaindex-cloud                         [ 22] LlamaIndex Cloud API
+│ lmstudio                                 [ 22] LM Studio — local model server
+│ localai                                  [ 22] LocalAI self-hosted inference API
+│ luma-ai                                  [ 19] Luma AI — 3D/video generation
+│ midjourney                               [ 20] Midjourney — AI art generation
+│ midjourney_api                           [ 22] Midjourney proxy API - imagine, upscale, variations, de
+│ milvus-cloud                             [ 21] Milvus/Zilliz vector database API
+│ minimax                                  [ 18] MiniMax AI model API
+│ mistral                                  [ 20] Mistral Large, Medium, Small — EU-hosted
+│ mistral-api                              [ 18] Mistral AI API
+│ mlflow                                   [ 23] MLflow ML lifecycle - experiments, runs, models, artifa
+│ modal                                    [ 19] Modal — serverless GPU compute
+│ modal-api                                [ 22] Modal serverless GPU API
+│ modal-cloud                              [ 20] Modal cloud GPU functions API
+│ moonshot                                 [ 18] Moonshot Kimi AI model API
+│ moshi                                    [ 18] Moshi real-time speech AI API
+│ neptune_ai                               [ 22] Neptune.ai experiment tracking - experiments, runs, pro
+│ neptune-ai                               [ 22] Neptune.ai — ML metadata store
+│ neptune-ml                               [ 21] Neptune.ai ML experiment API
+│ nosana                                   [ 18] Nosana decentralized GPU inference API
+│ novita-ai                                [ 18] Novita AI inference API
+│ nvidia-nim                               [ 19] NVIDIA NIM — GPU-optimized AI microservices
+│ ocr-space                                [ 18] OCR.space — optical character recognition
+│ octoai                                   [ 18] OctoAI inference API
+│ ollama-cloud                             [ 26] Ollama — local model serving
+│ openai                                   [ 37] OpenAI GPT-4, DALL-E, Whisper, Embeddings
+│ openai-api                               [ 18] OpenAI Chat Completions API
+│ openrouter                               [ 21] OpenRouter — unified LLM API gateway
+│ openrouter-api                           [ 18] OpenRouter unified model routing API
+│ ora-protocol                             [ 18] ORA Protocol onchain AI API
+│ paperspace                               [ 22] Paperspace GPU cloud API
+│ perplexity                               [ 18] Perplexity Sonar — online search LLM
+│ perplexity-api                           [ 18] Perplexity Sonar search API
+│ pinata                                   [ 22] Pinata IPFS - files, pins, gateways, groups, keys, anal
+│ pinecone                                 [ 24] Pinecone — vector database
+│ playht                                   [ 20] PlayHT — text-to-speech
+│ predibase                                [ 18] Predibase fine-tuning inference API
+│ promptfoo                                [ 21] Promptfoo LLM testing API
+│ promptlayer                              [ 22] PromptLayer LLM tracking - requests, prompts, versions,
+│ qdrant                                   [ 21] Qdrant — vector similarity search
+│ qwen-api                                 [ 18] Qwen/Tongyi AI model API
+│ ragas                                    [ 19] RAGAS RAG evaluation API
+│ relevance-ai                             [ 21] Relevance AI agent platform API
+│ remove-bg                                [ 18] Remove.bg — background removal
+│ render-network                           [ 18] Render Network decentralized GPU API
+│ replicate                                [ 25] Replicate — run ML models via API
+│ replicate-api                            [ 22] Replicate model hosting API
+│ resemble-ai                              [ 18] Resemble AI — voice cloning
+│ retell-ai                                [ 18] Retell AI voice agent API
+│ ritual                                   [ 18] Ritual decentralized AI inference API
+│ roboflow                                 [ 19] Roboflow — computer vision pipeline
+│ roboflow-api                             [ 24] Roboflow computer vision API
+│ roboflow-universe                        [ 21] Roboflow Universe model hub API
+│ runpod                                   [ 21] RunPod — GPU cloud for AI
+│ runway                                   [ 19] Runway — AI video generation
+│ rytr                                     [ 18] Rytr AI writing assistant API
+│ salad                                    [ 20] Salad distributed GPU cloud API
+│ sambanova                                [ 18] SambaNova — enterprise AI inference
+│ sambanova-api                            [ 18] SambaNova Cloud inference API
+│ scale_ai                                 [ 22] Scale AI data labeling - tasks, batches, projects, anno
+│ scale-ai                                 [ 22] Scale AI — data labeling, RLHF
+│ scale-api                                [ 18] Scale AI data labeling API
+│ snorkel                                  [ 18] Snorkel AI data programming API
+│ spark-api                                [ 18] iFlytek Spark AI model API
+│ stability_ai                             [ 22] Stability AI - image generation, upscaling, inpainting,
+│ stability-ai                             [ 21] Stable Diffusion, SDXL — image generation
+│ stable-diffusion-api                     [ 18] Stable Diffusion WebUI API
+│ stepfun                                  [ 18] StepFun AI model API
+│ sudowrite                                [ 18] Sudowrite fiction AI API
+│ suno                                     [ 21] Suno AI music - generate songs, extend, remix, lyrics, 
+│ suno-ai                                  [ 19] Suno — AI music generation
+│ superagent                               [ 20] SuperAgent AI agent framework API
+│ tabby                                    [ 20] Tabby self-hosted coding assistant API
+│ tabnine                                  [ 19] Tabnine AI code assistant API
+│ tavily-api                               [ 18] Tavily AI search API
+│ tensorrt-api                             [ 21] NVIDIA TensorRT-LLM inference API
+│ tensorrt-llm                             [ 22] NVIDIA TensorRT-LLM inference
+│ text-cortex                              [ 18] TextCortex AI writing API
+│ text-gen-webui                           [ 21] Text Generation WebUI API
+│ together_ai                              [ 21] Together AI - chat, completions, embeddings, images, fi
+│ together-ai                              [ 20] 200+ open-source models — inference, fine-tuning
+│ together-api                             [ 18] Together AI inference API
+│ toolhouse                                [ 20] Toolhouse AI function calling API
+│ trulens                                  [ 21] TruLens LLM evaluation API
+│ udio                                     [ 21] Udio AI music - generate, extend, remix, genres, moods,
+│ ultralytics                              [ 22] Ultralytics YOLO API
+│ ultravox                                 [ 18] Ultravox multimodal speech AI API
+│ unstructured                             [ 20] Unstructured document parsing API
+│ upstash-vector                           [ 18] Upstash Vector database API
+│ vapi                                     [ 18] VAPI voice AI agent API
+│ vast-ai                                  [ 21] Vast.ai GPU marketplace API
+│ vercel-ai                                [ 21] Vercel AI SDK gateway
+│ vllm                                     [ 22] vLLM — high-throughput LLM serving
+│ vllm-api                                 [ 21] vLLM inference server API
+│ vocode                                   [ 18] Vocode voice AI API
+│ voyage-ai                                [ 18] Voyage AI — best-in-class embeddings
+│ weaviate                                 [ 22] Weaviate — vector search engine
+│ weights_biases                           [ 21] Weights & Biases MLOps - runs, projects, artifacts, swe
+│ weights-biases                           [ 27] W&B — ML experiment tracking
+│ weights-biases-api                       [ 22] Weights & Biases experiment API
+│ whisper-api                              [ 18] Whisper speech recognition API
+│ wolfram-alpha                            [ 18] Wolfram Alpha computation API
+│ wordware                                 [ 21] Wordware AI prompt IDE API
+│ writer-api                               [ 18] Writer AI enterprise API
+│ writesonic                               [ 18] Writesonic AI writing API
+│ xai_grok                                 [ 19] xAI Grok - chat completions, reasoning, models, vision,
+│ xai-grok                                 [ 19] xAI Grok — real-time X knowledge
+│ yi-ai                                    [ 18] 01.AI Yi model API
+│ you-api                                  [ 18] You.com AI search API
+│ zhipu                                    [ 18] Zhipu GLM AI model API
+└───
+
+┌─── API (42 servers, 797 tools) ───
+│ abstractapi                              [ 19] AbstractAPI suite - IP, email validation, phone, VAT, e
+│ apigee                                   [ 18] Google Apigee — API management
+│ exchange_rate_api                        [ 18] ExchangeRate-API - latest, pair, historical, supported 
+│ facebook_graph                           [ 18] Facebook Graph API - pages, posts, groups, events, ads,
+│ facebook-graph                           [ 20] Facebook/Meta Graph API
+│ github_graphql                           [ 18] GitHub GraphQL - repositories, issues, PRs, users, orga
+│ gnews                                    [ 19] GNews - top headlines, search, sources, articles, topic
+│ gravitee                                 [ 18] Gravitee API management - APIs, plans, subscriptions, u
+│ hoppscotch                               [ 18] Hoppscotch API testing - collections, environments, req
+│ httpbin                                  [ 19] HTTPBin request testing - methods, headers, status code
+│ hubspot                                  [ 18] HubSpot — CRM, marketing, sales
+│ instagram                                [ 19] Instagram Graph API
+│ instagram_graph                          [ 18] Instagram Graph API - media, comments, stories, insight
+│ ip_api                                   [ 18] IP-API geolocation - IP lookup, batch, fields, language
+│ jsonplaceholder                          [ 19] JSONPlaceholder fake API - posts, comments, albums, pho
+│ kong                                     [ 18] Kong — API gateway
+│ linkedin                                 [ 19] LinkedIn API
+│ mockapi                                  [ 18] MockAPI data generation - projects, resources, schemas,
+│ mockoon                                  [ 18] Mockoon API mocking - environments, routes, CRUD, rules
+│ nasa_api                                 [ 20] NASA APIs - APOD, Mars rover photos, NEO, EPIC, DONKI, 
+│ newsapi                                  [ 19] NewsAPI - top headlines, everything, sources, search, c
+│ openweather                              [ 20] OpenWeatherMap - current, forecast, historical, air qua
+│ pinterest                                [ 19] Pinterest API
+│ postman                                  [ 18] Postman — API development platform
+│ postman_api                              [ 18] Postman API platform - collections, environments, works
+│ rapidapi                                 [ 18] RapidAPI — API marketplace
+│ readme                                   [ 18] ReadMe API documentation - categories, docs, changelogs
+│ reddit                                   [ 21] Reddit API
+│ reqres                                   [ 18] ReqRes fake REST API - users, register, login, resource
+│ restcountries                            [ 19] REST Countries data - names, capitals, populations, cur
+│ salesforce                               [ 22] Salesforce — CRM platform
+│ shopify                                  [ 26] Shopify — e-commerce platform
+│ spacex_api                               [ 20] SpaceX API - launches, rockets, capsules, ships, crew, 
+│ stoplight                                [ 18] Stoplight API design - projects, branches, nodes, spect
+│ swaggerhub                               [ 18] SwaggerHub - APIs, domains, templates, integrations, or
+│ threads_api                              [ 18] Meta Threads API - posts, replies, profiles, media, ins
+│ tiktok                                   [ 19] TikTok API
+│ twitter_api                              [ 18] X/Twitter API v2 - tweets, users, spaces, lists, bookma
+│ twitter-x                                [ 22] X/Twitter API v2
+│ tyk                                      [ 18] Tyk API gateway - APIs, policies, keys, certificates, w
+│ weatherapi                               [ 19] WeatherAPI - current, forecast, history, marine, astron
+│ youtube_data                             [ 21] YouTube Data API - videos, channels, playlists, comment
+└───
+
+┌─── AUTOMATION (85 servers, 1565 tools) ───
+│ activepieces                             [ 18] Activepieces automation - flows, connections, pieces, r
+│ airbyte-api                              [ 18] Airbyte data integration API
+│ airflow                                  [ 21] Apache Airflow - DAGs, tasks, runs, connections, variab
+│ airtable-automations                     [ 18] Airtable automations API
+│ alloy                                    [ 18] Alloy unified commerce API
+│ apify                                    [ 23] Apify web scraping - actors, runs, datasets, key-value 
+│ apify-api                                [ 18] Apify web scraping platform API
+│ apify-scraping                           [ 20] Apify — web scraping
+│ argo-workflows                           [ 18] Argo Workflows Kubernetes API
+│ boomi                                    [ 18] Boomi integration API
+│ bright-data-scrape                       [ 18] Bright Data — web data
+│ brightdata                               [ 18] Bright Data proxies - residential, datacenter, ISP, mob
+│ browserbase-auto                         [ 18] Browserbase — headless browser
+│ browserless                              [ 21] Browserless.io - browser automation, screenshots, PDFs,
+│ bullmq-api                               [ 18] BullMQ Redis job queue API
+│ celigo                                   [ 18] Celigo iPaaS API
+│ circleci-api                             [ 18] CircleCI pipeline API
+│ cloudflare-browser                       [ 18] Cloudflare Browser Rendering API
+│ crawl4ai                                 [ 18] Crawl4AI web scraping API
+│ crawlbase                                [ 18] Crawlbase web scraping - scraper, screenshots, storage,
+│ crawlee                                  [ 18] Crawlee web scraping framework API
+│ dagster-cloud                            [ 18] Dagster Cloud orchestration API
+│ defer-api                                [ 18] Defer background function API
+│ dlt-api                                  [ 18] dlt data loading API
+│ estuary-flow                             [ 18] Estuary Flow real-time ETL API
+│ firecrawl-api                            [ 18] Firecrawl web scraping API
+│ firecrawl-scraping                       [ 20] Firecrawl — web scraping for LLMs
+│ fivetran-api                             [ 18] Fivetran data connector API
+│ flyte                                    [ 18] Flyte ML workflow API
+│ gitlab-ci                                [ 18] GitLab CI/CD API
+│ graphile-worker                          [ 18] Graphile Worker job queue API
+│ hatchet                                  [ 18] Hatchet task queue - workflows, workers, events, runs, 
+│ hatchet-api                              [ 18] Hatchet task queue API
+│ home-assistant-iot                       [ 18] Home Assistant — smart home
+│ inngest                                  [ 19] Inngest event-driven functions - events, functions, run
+│ inngest-api                              [ 18] Inngest event-driven functions API
+│ inngest-events                           [ 18] Inngest — event-driven functions
+│ jenkins-api                              [ 18] Jenkins CI/CD API
+│ kestra                                   [ 18] Kestra orchestration - flows, executions, namespaces, t
+│ luigi                                    [ 18] Luigi batch processing API
+│ mage-ai                                  [ 18] Mage.ai data pipeline API
+│ make_api                                 [ 18] Make (Integromat) - scenarios, organizations, connectio
+│ make-integromat                          [ 18] Make (Integromat) — automation platform
+│ meltano                                  [ 18] Meltano data pipeline API
+│ merge-dev                                [ 18] Merge.dev unified API
+│ n8n                                      [ 21] n8n — workflow automation
+│ n8n-cloud                                [ 18] n8n Cloud workflow API
+│ nango                                    [ 18] Nango unified integrations API
+│ node-red-flow                            [ 18] Node-RED — flow programming
+│ notion-integration                       [ 18] Notion integration API
+│ oxylabs                                  [ 18] Oxylabs web scraping API
+│ paragon                                  [ 18] Paragon integration platform API
+│ phantombuster                            [ 18] PhantomBuster automation - phantoms, agents, data, cont
+│ phantombuster-api                        [ 18] PhantomBuster automation API
+│ phantombuster-auto                       [ 18] PhantomBuster — data extraction
+│ pipedream                                [ 20] Pipedream — serverless workflows
+│ playwright-api                           [ 18] Playwright browser automation API
+│ power-automate                           [ 18] Power Automate cloud flows API
+│ prefect-api                              [ 18] Prefect workflow orchestration API
+│ puppeteer-api                            [ 18] Puppeteer headless browser API
+│ qstash                                   [ 23] Upstash QStash - publish, schedules, topics, DLQ, callb
+│ quirrel                                  [ 18] Quirrel job scheduling API
+│ robocorp                                 [ 18] Robocorp RPA - robots, processes, work items, assets, v
+│ scrapingbee                              [ 18] ScrapingBee web scraping - render JS, screenshots, geo-
+│ scrapingbee-api                          [ 18] ScrapingBee — web scraping
+│ selenium_grid                            [ 18] Selenium Grid - sessions, nodes, capabilities, queue, d
+│ selenium-api                             [ 18] Selenium Grid hub API
+│ singer-api                               [ 18] Singer data pipeline API
+│ slack-workflows                          [ 18] Slack workflow builder API
+│ sling                                    [ 18] Sling data transfer API
+│ snaplogic                                [ 18] SnapLogic integration API
+│ stitch-api                               [ 18] Stitch data pipeline API
+│ temporal                                 [ 23] Temporal — durable execution platform
+│ tray-io                                  [ 18] Tray.io automation API
+│ trigger_dev                              [ 18] Trigger.dev background jobs - jobs, runs, events, integ
+│ trigger-dev-api                          [ 18] Trigger.dev background jobs API
+│ trigger-dev-jobs                         [ 19] Trigger.dev — background jobs
+│ uipath                                   [ 18] UiPath RPA - robots, processes, jobs, queues, assets, f
+│ unified-to                               [ 18] Unified.to integration API
+│ upstash-workflow                         [ 18] Upstash Workflow orchestration API
+│ windmill                                 [ 20] Windmill — developer workflow engine
+│ workato                                  [ 18] Workato automation API
+│ zapier                                   [ 19] Zapier — workflow automation
+│ zapier_api                               [ 18] Zapier NLA - actions, zaps, triggers, searches, task hi
+│ zyte                                     [ 18] Zyte web scraping API
+└───
+
+┌─── BLOCKCHAIN (52 servers, 950 tools) ───
+│ airstack                                 [ 18] Airstack web3 social data API
+│ alchemy-api                              [ 18] Alchemy blockchain API
+│ ankr-api                                 [ 18] Ankr multichain RPC API
+│ aptos-rpc                                [ 18] Aptos Move
+│ arbiscan                                 [ 18] Arbiscan Arbitrum explorer API
+│ arbitrum-rpc                             [ 18] Arbitrum JSON-RPC
+│ avalanche-rpc                            [ 18] Avalanche C-Chain
+│ base-rpc                                 [ 18] Base JSON-RPC
+│ basescan                                 [ 18] BaseScan Base L2 explorer API
+│ bitcoin-rpc                              [ 19] Bitcoin Core
+│ blockscout                               [ 18] Blockscout blockchain explorer API
+│ blur-api                                 [ 18] Blur NFT marketplace API
+│ bsc-rpc                                  [ 18] BNB Smart Chain
+│ bscscan                                  [ 18] BscScan BSC explorer API
+│ cardano-blockfrost                       [ 18] Cardano — Blockfrost API
+│ chainstack                               [ 18] Chainstack blockchain node API
+│ cosmos-rpc                               [ 18] Cosmos Hub
+│ covalent-data                            [ 19] Covalent — blockchain data
+│ ethereum-rpc                             [ 22] Ethereum JSON-RPC — mainnet
+│ etherscan                                [ 18] Etherscan blockchain explorer API
+│ farcaster-api                            [ 18] Farcaster social protocol API
+│ ftmscan                                  [ 18] FtmScan Fantom explorer API
+│ hedera-mirror                            [ 18] Hedera Hashgraph
+│ infura                                   [ 18] Infura blockchain infrastructure API
+│ lens-protocol                            [ 18] Lens Protocol social API
+│ lightning-lnd                            [ 18] Lightning Network LND
+│ mirror-xyz                               [ 18] Mirror.xyz publishing API
+│ moralis-web3                             [ 19] Moralis — Web3 data
+│ nansen-analytics                         [ 18] Nansen — blockchain analytics
+│ near-rpc                                 [ 18] NEAR Protocol
+│ neynar                                   [ 18] Neynar Farcaster data API
+│ nftport                                  [ 18] NFTPort NFT data API
+│ opensea-nft                              [ 21] OpenSea — NFT marketplace
+│ optimism-rpc                             [ 18] Optimism JSON-RPC
+│ optimistic-etherscan                     [ 18] Optimism Explorer API
+│ polkadot-rpc                             [ 18] Polkadot
+│ polygon-rpc                              [ 19] Polygon JSON-RPC
+│ polygonscan                              [ 18] PolygonScan explorer API
+│ quicknode-rpc                            [ 18] QuickNode — blockchain nodes
+│ rarible-api                              [ 18] Rarible NFT marketplace API
+│ reservoir                                [ 18] Reservoir NFT trading API
+│ simplehash                               [ 18] SimpleHash NFT data API
+│ snowtrace                                [ 18] SnowTrace Avalanche explorer API
+│ solana-rpc                               [ 20] Solana JSON-RPC
+│ stellar-horizon                          [ 19] Stellar Horizon
+│ sui-rpc                                  [ 18] Sui Move
+│ tenderly                                 [ 18] Tenderly smart contract simulation API
+│ the-graph-indexer                        [ 18] The Graph — indexing
+│ thirdweb                                 [ 18] Thirdweb web3 development API
+│ ton-rpc                                  [ 18] TON Blockchain
+│ x2y2-api                                 [ 18] X2Y2 NFT marketplace API
+│ zora-api                                 [ 18] Zora NFT protocol API
+└───
+
+┌─── CLOUD (74 servers, 1488 tools) ───
+│ 8base                                    [ 20] 8base serverless backend API
+│ akash                                    [ 18] Akash decentralized cloud API
+│ amazon-ec2-api                           [ 18] Amazon EC2 compute API
+│ amazon-ecs-api                           [ 18] Amazon ECS container API
+│ amazon-eks-api                           [ 18] Amazon EKS Kubernetes API
+│ amazon-lambda-api                        [ 18] Amazon Lambda serverless API
+│ amazon-rds-api                           [ 18] Amazon RDS database API
+│ amazon-s3-api                            [ 18] Amazon S3 storage API
+│ ampt                                     [ 20] Ampt serverless platform API
+│ appwrite                                 [ 21] Appwrite backend-as-a-service API
+│ aptible                                  [ 21] Aptible HIPAA cloud platform API
+│ aws_bedrock                              [ 20] AWS Bedrock AI - model invocation, knowledge bases, age
+│ aws_cloudwatch                           [ 21] AWS CloudWatch monitoring - metrics, alarms, logs, dash
+│ aws_dynamodb                             [ 20] AWS DynamoDB NoSQL - tables, items, queries, scans, ind
+│ aws_ec2                                  [ 21] AWS EC2 compute - instances, AMIs, security groups, vol
+│ aws_ecs                                  [ 20] AWS ECS containers - clusters, services, tasks, task de
+│ aws_eks                                  [ 20] AWS EKS Kubernetes - clusters, node groups, add-ons, fa
+│ aws_iam                                  [ 18] AWS IAM identity - users, roles, policies, groups, acce
+│ aws_lambda                               [ 21] AWS Lambda serverless - functions, layers, aliases, ver
+│ aws_s3                                   [ 22] AWS S3 object storage - buckets, objects, multipart, ve
+│ aws_secretsmanager                       [ 20] AWS Secrets Manager - secrets, versions, rotation, poli
+│ aws_ses                                  [ 21] AWS SES email - send, templates, identities, configurat
+│ aws_sns                                  [ 21] AWS SNS notifications - topics, subscriptions, publish,
+│ aws_sqs                                  [ 21] AWS SQS message queuing - queues, messages, dead letter
+│ aws-athena                               [ 21] AWS Athena — serverless SQL
+│ aws-bedrock                              [ 20] AWS Bedrock — managed AI models
+│ aws-cloudwatch                           [ 22] AWS CloudWatch — monitoring
+│ aws-cognito                              [ 19] AWS Cognito — user auth
+│ aws-dynamodb                             [ 20] AWS DynamoDB — NoSQL database
+│ aws-ec2                                  [ 22] AWS EC2 — virtual machines
+│ aws-ecs                                  [ 22] AWS ECS — container orchestration
+│ aws-eks                                  [ 21] AWS EKS — Kubernetes
+│ aws-eventbridge                          [ 21] AWS EventBridge — event bus
+│ aws-glue                                 [ 22] AWS Glue — ETL service
+│ aws-iam                                  [ 20] AWS IAM — identity management
+│ aws-kinesis                              [ 21] AWS Kinesis — real-time streaming
+│ aws-lambda                               [ 20] AWS Lambda — serverless functions
+│ aws-opensearch                           [ 21] AWS OpenSearch — search/analytics
+│ aws-rds                                  [ 21] AWS RDS — managed databases
+│ aws-redshift                             [ 21] AWS Redshift — data warehouse
+│ aws-route53                              [ 21] AWS Route 53 — DNS management
+│ aws-s3                                   [ 22] Amazon S3 — object storage
+│ aws-secrets-manager                      [ 22] AWS Secrets Manager
+│ aws-ses                                  [ 18] AWS SES — email service
+│ aws-sns                                  [ 18] AWS SNS — notifications
+│ aws-sqs                                  [ 19] AWS SQS — message queues
+│ aws-step-functions                       [ 21] AWS Step Functions — orchestration
+│ azure_cognitive                          [ 22] Azure AI Services - text analytics, computer vision, tr
+│ azure_cosmosdb                           [ 21] Azure Cosmos DB - databases, containers, documents, que
+│ azure_functions                          [ 20] Azure Functions - function apps, functions, triggers, b
+│ azure_openai                             [ 21] Azure OpenAI - deployments, completions, embeddings, im
+│ azure_storage                            [ 21] Azure Blob Storage - containers, blobs, append, page, s
+│ azure-aks                                [ 20] Azure AKS — Kubernetes
+│ azure-blob                               [ 22] Azure Blob Storage
+│ azure-blob-api                           [ 18] Azure Blob Storage API
+│ azure-cognitive                          [ 20] Azure Cognitive Services
+│ azure-container-apps                     [ 20] Azure Container Apps
+│ azure-cosmosdb                           [ 21] Azure Cosmos DB — global database
+│ azure-devops                             [ 22] Azure DevOps — CI/CD, repos, boards
+│ azure-functions                          [ 20] Azure Functions — serverless
+│ azure-functions-api                      [ 18] Azure Functions management API
+│ azure-key-vault                          [ 22] Azure Key Vault — secrets
+│ azure-monitor                            [ 20] Azure Monitor — observability
+│ azure-openai                             [ 19] Azure OpenAI Service
+│ backblaze-b2                             [ 22] Backblaze B2 — storage
+│ caprover                                 [ 20] CapRover PaaS platform API
+│ civo                                     [ 21] Civo — K8s-native cloud
+│ cloudflare-api                           [ 21] Cloudflare API v4 — Workers, R2, D1, KV, DNS, WAF
+│ cloudflare-d1-api                        [ 18] Cloudflare D1 database API
+│ cloudflare-do                            [ 18] Cloudflare Durable Objects API
+│ cloudflare-hyperdrive                    [ 18] Cloudflare Hyperdrive DB proxy API
+│ cloudflare-kv-api                        [ 18] Cloudflare KV storage API
+│ cloudflare-queues                        [ 18] Cloudflare Queues messaging API
+│ cloudflare-r2-api                        [ 18] Cloudflare R2 storage API
+└───
+
+═══════════════════════════════════════════════════════════════════════════════
+  GRAND TOTAL: 1878 servers | 9765 tools | 15 categories
+═══════════════════════════════════════════════════════════════════════════════

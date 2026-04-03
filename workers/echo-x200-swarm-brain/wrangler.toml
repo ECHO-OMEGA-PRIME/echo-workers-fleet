@@ -1,0 +1,72 @@
+name = "echo-x200-swarm-brain"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+WORKER_VERSION = "1.1.0"
+ENVIRONMENT = "production"
+MAX_AGENTS = "200"
+SWARM_MODE = "x200"
+CLAUDE_PROXY_URL = "https://territories-weeks-institution-parties.trycloudflare.com"
+
+# Service Bindings — direct worker-to-worker calls (zero network latency)
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "FLEET_COMMANDER"
+service = "echo-fleet-commander"
+
+[[services]]
+binding = "ENGINE_RUNTIME"
+service = "echo-engine-runtime"
+
+[[services]]
+binding = "KNOWLEDGE_FORGE"
+service = "echo-knowledge-forge"
+
+[[services]]
+binding = "SPEAK_CLOUD"
+service = "echo-speak-cloud"
+
+[[services]]
+binding = "CHAT"
+service = "echo-chat"
+
+[[services]]
+binding = "AI_ORCHESTRATOR"
+service = "echo-ai-orchestrator"
+
+[[services]]
+binding = "MEMORY_CORTEX"
+service = "echo-memory-cortex"
+
+[[services]]
+binding = "GRAPH_RAG"
+service = "echo-graph-rag"
+
+[[services]]
+binding = "SDK_GATEWAY"
+service = "echo-sdk-gateway"
+
+# D1 Database for swarm state persistence
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-x200-swarm"
+database_id = "6b2d5ee5-1445-4e8b-99f0-6823ba5814e4"
+
+# KV for fast agent state cache
+[[kv_namespaces]]
+binding = "AGENT_STATE"
+id = "0b02106e680744f2af345a173e4540be"
+
+# Analytics
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "echo-x200-analytics"

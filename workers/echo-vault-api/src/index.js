@@ -78,6 +78,51 @@ function checkRateLimit(request, limit = 60) {
   return bucket.count <= limit;
 }
 
+// ── H7 FIX: AES-256-GCM Encryption at Rest ─────────────────────
+
+async function deriveKey(env) {
+  const secret = env.VAULT_ENCRYPTION_KEY || env.API_KEY || 'echo-vault-default';
+  const raw = new TextEncoder().encode(secret);
+  const keyMaterial = await crypto.subtle.importKey('raw', raw, 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: new TextEncoder().encode('echo-vault-salt-v1'), iterations: 100000, hash: 'SHA-256' },
+    keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']
+  );
+}
+
+async function encrypt(plaintext, env) {
+  if (!plaintext) return '';
+  const key = await deriveKey(env);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encoded = new TextEncoder().encode(plaintext);
+  const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, encoded);
+  // Format: base64(iv + ciphertext) prefixed with 'enc:'
+  const combined = new Uint8Array(iv.length + ciphertext.byteLength);
+  combined.set(iv, 0);
+  combined.set(new Uint8Array(ciphertext), iv.length);
+  return 'enc:' + btoa(String.fromCharCode(...combined));
+}
+
+async function decrypt(stored, env) {
+  if (!stored) return '';
+  if (!stored.startsWith('enc:')) return stored; // Legacy plaintext — return as-is
+  try {
+    const key = await deriveKey(env);
+    const combined = Uint8Array.from(atob(stored.slice(4)), c => c.charCodeAt(0));
+    const iv = combined.slice(0, 12);
+    const ciphertext = combined.slice(12);
+    const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext);
+    return new TextDecoder().decode(decrypted);
+  } catch {
+    return '[DECRYPT_ERROR]';
+  }
+}
+
+function maskSecret(value) {
+  if (!value || value.length < 4) return '****';
+  return value.slice(0, 4) + '*'.repeat(Math.min(value.length - 4, 32));
+}
+
 // ── Audit Logger ────────────────────────────────────────────────
 
 async function auditLog(env, action, details) {
@@ -98,10 +143,17 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders });
     }
 
-    // Body size limit: 512KB
+    // H10 FIX: Body size limit — read actual body, not just Content-Length header
+    // Chunked encoding can bypass Content-Length check
     if (['POST', 'PUT'].includes(request.method)) {
       const cl = parseInt(request.headers.get('Content-Length') || '0');
       if (cl > 524288) return safeError('Payload too large', 413, request);
+      // Clone and verify actual body size for chunked transfers
+      if (!request.headers.get('Content-Length')) {
+        const clone = request.clone();
+        const body = await clone.arrayBuffer();
+        if (body.byteLength > 524288) return safeError('Payload too large', 413, request);
+      }
     }
 
     // Rate limiting
@@ -158,6 +210,9 @@ async function handleRequest(request, env) {
     if (!body.service) return json({ error: 'service is required' }, 400);
     const strength = scorePassword(body.password || body.api_key || '');
     const tags = Array.isArray(body.tags) ? body.tags.join(',') : (body.tags || '');
+    // H7 FIX: Encrypt sensitive fields before storing
+    const encPassword = await encrypt(body.password || '', env);
+    const encApiKey = await encrypt(body.api_key || '', env);
     await env.DB.prepare(`
       INSERT INTO credentials (service, username, password, api_key, notes, tags, category, strength)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -169,16 +224,17 @@ async function handleRequest(request, env) {
         category = COALESCE(excluded.category, category),
         strength = excluded.strength,
         updated_at = datetime('now')
-    `).bind(body.service, body.username || '', body.password || '', body.api_key || '',
+    `).bind(body.service, body.username || '', encPassword, encApiKey,
             body.notes || '', tags, body.category || 'general', strength).run();
     await auditLog(env, 'store', { service: body.service });
     return json({ stored: true, service: body.service });
   }
 
-  // ── Get (H12 FIX: explicit columns, no SELECT *) ──
+  // ── Get (H12 FIX: decrypt secrets, mask unless ?reveal=true) ──
   if (path === '/get' && method === 'GET') {
     const service = url.searchParams.get('service');
     const id = url.searchParams.get('id');
+    const reveal = url.searchParams.get('reveal') === 'true';
     if (!id && !service) return json({ error: 'Provide ?service=xxx or ?id=123' }, 400);
     const cols = 'id, service, username, password, api_key, notes, tags, category, strength, created_at, updated_at';
     let row;
@@ -188,6 +244,12 @@ async function handleRequest(request, env) {
       row = await env.DB.prepare(`SELECT ${cols} FROM credentials WHERE LOWER(service) = LOWER(?) ORDER BY updated_at DESC LIMIT 1`).bind(service).first();
     }
     if (!row) return json({ error: 'Not found' }, 404);
+    // H7+H12: Decrypt then mask unless reveal requested
+    const decPassword = await decrypt(row.password || '', env);
+    const decApiKey = await decrypt(row.api_key || '', env);
+    row.password = reveal ? decPassword : maskSecret(decPassword);
+    row.api_key = reveal ? decApiKey : maskSecret(decApiKey);
+    await auditLog(env, reveal ? 'get_reveal' : 'get', { service: row.service, id: row.id });
     return json(row);
   }
 
@@ -262,6 +324,8 @@ async function handleRequest(request, env) {
       try {
         const strength = scorePassword(cred.password || cred.api_key || '');
         const tags = Array.isArray(cred.tags) ? cred.tags.join(',') : (cred.tags || '');
+        const encPw = await encrypt(cred.password || '', env);
+        const encKey = await encrypt(cred.api_key || '', env);
         await env.DB.prepare(`
           INSERT INTO credentials (service, username, password, api_key, notes, tags, category, strength)
           VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -272,7 +336,7 @@ async function handleRequest(request, env) {
             tags = COALESCE(excluded.tags, tags),
             category = COALESCE(excluded.category, category),
             strength = excluded.strength, updated_at = datetime('now')
-        `).bind(cred.service, cred.username || '', cred.password || '', cred.api_key || '',
+        `).bind(cred.service, cred.username || '', encPw, encKey,
                 cred.notes || '', tags, cred.category || 'general', strength).run();
         stored++;
       } catch { errors++; }
