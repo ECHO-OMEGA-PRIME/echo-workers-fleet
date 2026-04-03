@@ -1,0 +1,31 @@
+name = "echo-prime-relay"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+# ECHO_API_KEY must be set as a secret:
+#   wrangler secret put ECHO_API_KEY
+
+[[kv_namespaces]]
+binding = "RELAY_KV"
+id = "8595e79e71444131b87309cb52ae2740"
+
+# Service bindings to other workers in the mesh
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "ENGINE_RUNTIME"
+service = "echo-engine-runtime"
+
+[[services]]
+binding = "ECHO_CHAT"
+service = "echo-chat"
+
+[[services]]
+binding = "SPEAK_CLOUD"
+service = "echo-speak-cloud"

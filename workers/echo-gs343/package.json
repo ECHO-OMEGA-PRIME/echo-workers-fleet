@@ -1,0 +1,18 @@
+{
+  "name": "echo-gs343",
+  "version": "2.0.0",
+  "description": "GS343 Divine Overseer — Autonomous Auto-Healing System for ECHO PRIME",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "author": "Bobby Don McWilliams II",
+  "license": "PROPRIETARY"
+}

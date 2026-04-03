@@ -1,0 +1,75 @@
+# Echo Shared Brain - Cloudflare Worker
+# Universal context manager for ALL AI instances
+# SECURITY HARDENED VERSION 2.1.0
+
+name = "echo-shared-brain"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================
+# Environment Variables (set via wrangler secret)
+# ============================================================
+# ECHO_API_KEY       - Primary API key for auth (REQUIRED)
+# SERVICE_API_KEY    - Secondary/service API key (optional)
+# AZURE_OPENAI_ENDPOINT - Azure/GitHub Models endpoint
+# AZURE_API_KEY      - Azure/GitHub Models API key
+# COMMANDER_URL      - Commander API base URL
+# COMMANDER_API_KEY  - Commander API key
+
+[vars]
+VERSION = "2.1.0-hardened"
+
+# ============================================================
+# D1 Database
+# ============================================================
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-shared-brain"
+database_id = "19ed6232-576e-4b6e-9e85-a7e9c290f6df"
+
+# ============================================================
+# KV Namespace (hot cache, rate limiting)
+# ============================================================
+[[kv_namespaces]]
+binding = "HOT"
+id = "75f24a486c9b4c799b326c591109fdaf"
+
+# ============================================================
+# R2 Bucket (archive storage)
+# ============================================================
+[[r2_buckets]]
+binding = "ARCHIVE"
+bucket_name = "echo-prime-memory"
+
+[[vectorize]]
+binding = "VECTORS"
+index_name = "shared-brain-embeddings"
+
+[ai]
+binding = "AI"
+
+# ============================================================
+# Service Bindings (inter-worker communication)
+# ============================================================
+[[services]]
+binding = "OMNISYNC"
+service = "omniscient-sync"
+
+[[services]]
+binding = "MEMORY_PRIME"
+service = "echo-memory-prime"
+
+[[services]]
+binding = "BUILD_ORCHESTRATOR"
+service = "echo-build-orchestrator"
+
+# ============================================================
+# Cron Triggers
+# ============================================================
+[triggers]
+crons = [
+  "*/10 * * * *",   # Every 10 min: todo escalation + health check
+  "0 */6 * * *",    # Every 6 hours: memory consolidation
+  "0 4 * * *",      # Daily 4am UTC: garbage cleanup
+]

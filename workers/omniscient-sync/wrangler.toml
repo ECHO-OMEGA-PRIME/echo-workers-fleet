@@ -1,0 +1,38 @@
+name = "omniscient-sync"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# ECHO_API_KEY must be set via: wrangler secret put ECHO_API_KEY
+
+[[kv_namespaces]]
+binding = "OMNISCIENT_DATA"
+id = "03b27e2da8d14773b094ab42293d104e"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "omniscient-sync"
+database_id = "6fb01050-470d-493b-8eda-755e97ace566"
+
+[[r2_buckets]]
+binding = "R2_SWARM"
+bucket_name = "echo-swarm-brain"
+
+[[r2_buckets]]
+binding = "R2_MEMORY"
+bucket_name = "echo-prime-memory"
+
+[[r2_buckets]]
+binding = "R2_VAULT"
+bucket_name = "echo-prime-master-vault"
+
+[[r2_buckets]]
+binding = "R2_LAW"
+bucket_name = "echo-prime-law-corpus"
+
+[[r2_buckets]]
+binding = "R2_TAX"
+bucket_name = "echo-prime-tax-knowledge"
+
+[[r2_buckets]]
+binding = "R2_KNOWLEDGE"
+bucket_name = "echo-prime-knowledge"

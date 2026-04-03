@@ -1,0 +1,21 @@
+name = "echo-mega-gateway-cloud"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[vars]
+ENVIRONMENT = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-mega-gateway"
+database_id = "5b92a2cc-01fe-4264-a201-e22972bc479e"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "09c87729f0904f4fb1cbc1bcc945dbfa"
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "echo_metrics"

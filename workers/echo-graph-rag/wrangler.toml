@@ -1,0 +1,23 @@
+name = "echo-graph-rag"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+ENVIRONMENT = "production"
+
+# ECHO_API_KEY must be set as a secret:
+#   wrangler secret put ECHO_API_KEY
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-graph-rag"
+database_id = "21e2bff9-d95d-434a-bb33-f413b5ec0364"
+
+[[d1_databases]]
+binding = "DOCTRINES_DB"
+database_name = "echo-doctrines"
+database_id = "f3de1a7d-c728-43da-ac75-db8acea8416f"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "06210ad89e95487ea7ff93f521af2996"

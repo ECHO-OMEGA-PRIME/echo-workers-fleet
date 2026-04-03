@@ -1,0 +1,55 @@
+name = "echo-arcanum"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[observability]
+enabled = true
+
+[vars]
+ENVIRONMENT = "production"
+WORKER_VERSION = "3.0.0"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-prompt-forge"
+database_id = "4ebccd42-2def-4e88-922f-36e24ed81431"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "cab5b592fad54fdbb6310866307bdc23"
+
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "AI_ORCHESTRATOR"
+service = "echo-ai-orchestrator"
+
+[[services]]
+binding = "ENGINE_RUNTIME"
+service = "echo-engine-runtime"
+
+[[services]]
+binding = "SDK_GATEWAY"
+service = "echo-sdk-gateway"
+
+[[r2_buckets]]
+binding = "BUILD_OUTPUT"
+bucket_name = "echo-build-plans"
+
+[triggers]
+crons = ["0 6 * * *", "0 18 * * *", "0 0 * * SUN"]
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "echo_metrics"

@@ -1,0 +1,16 @@
+{
+  "name": "echo-fleet-commander",
+  "version": "1.3.0",
+  "description": "Fleet Commander — monitors, scores, and commands the Echo Prime Cloudflare worker fleet",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241230.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.99.0"
+  }
+}

@@ -1,0 +1,29 @@
+name = "echo-swarm-brain"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "swarm-brain"
+database_id = "ca544008-6484-4abd-b669-eca42d8eb328"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "7c4dfbbc51524046964f2e3912b39f5b"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "echo-swarm-brain"
+
+[[services]]
+binding = "SCANNER"
+service = "echo-343-scanner"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+SWARM_VERSION = "3.2.0"
+ENVIRONMENT = "production"
+MAX_AGENTS = "1200"

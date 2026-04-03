@@ -1,0 +1,38 @@
+name = "echo-fleet-commander"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[triggers]
+crons = ["*/5 * * * *", "0 * * * *", "0 */6 * * *", "0 9 * * *", "0 0 * * SUN"]
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-fleet-commander"
+database_id = "3d2bb239-87e4-47da-9aa4-6d1ae4c1edfc"
+
+# KV Namespace for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "cce3fcc589b54b14a477f6241ac0308a"
+
+# Core service bindings (only workers that exist and are used in code)
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "SERVICE_REGISTRY"
+service = "echo-service-registry"
+
+[[services]]
+binding = "DAEMON"
+service = "echo-autonomous-daemon"
+
+[[services]]
+binding = "OMNISYNC"
+service = "omniscient-sync"

@@ -1,0 +1,32 @@
+name = "echo-speak-cloud"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+VERSION = "2.2.0"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-speak-cloud"
+database_id = "placeholder-update-with-actual-id"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "placeholder-update-with-actual-id"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "echo-prime-media"
+
+[[durable_objects.bindings]]
+name = "VOICE_CONVERSATION"
+class_name = "VoiceConversation"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["VoiceConversation"]
+
+# Secrets (set via wrangler secret put):
+# ECHO_API_KEY
+# ELEVENLABS_API_KEY

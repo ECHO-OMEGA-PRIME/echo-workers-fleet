@@ -1,0 +1,20 @@
+{
+  "name": "echo-mega-gateway-cloud",
+  "version": "2.0.0",
+  "description": "ECHO MEGA Gateway Cloud v2.0 — Universal Dynamic API Proxy. 1,873 servers, 35,817 tools.",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "populate": "npx tsx scripts/populate.ts"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.99.0"
+  }
+}

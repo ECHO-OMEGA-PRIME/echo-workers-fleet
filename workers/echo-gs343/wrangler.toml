@@ -1,0 +1,22 @@
+name = "echo-gs343"
+account_id = "b9af3a4bf161132bb7e5d3d365fb8bb0"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-343-scanner"
+database_id = "a19e7471-c417-427a-81e7-b767e11c43cb"
+
+[vars]
+CF_ACCOUNT_ID = "b9af3a4bf161132bb7e5d3d365fb8bb0"
+VERSION = "2.1.0"
+SERVICE_NAME = "GS343 Divine Overseer"
+
+# Secrets (set via wrangler secret put):
+# API_KEY — for auth on write endpoints
+# CF_API_TOKEN — for Cloudflare API calls (redeploy, rollback)

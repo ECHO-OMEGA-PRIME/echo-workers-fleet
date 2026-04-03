@@ -1,0 +1,13 @@
+name = "echo-vault-api"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-master-vault"
+database_id = "40f1f94f-0697-42b8-b98f-4bdef51d644f"
+
+[[r2_buckets]]
+binding = "VAULT"
+bucket_name = "echo-prime-master-vault"

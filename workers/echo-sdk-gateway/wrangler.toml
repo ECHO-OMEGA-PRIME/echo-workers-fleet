@@ -1,0 +1,161 @@
+name = "echo-sdk-gateway"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# Service bindings for internal Worker-to-Worker calls (zero latency, no public URL)
+[[services]]
+binding = "ENGINE_RUNTIME"
+service = "echo-engine-runtime"
+
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "KNOWLEDGE_FORGE"
+service = "echo-knowledge-forge"
+
+[[services]]
+binding = "VAULT_API"
+service = "echo-vault-api"
+
+# Graph-RAG for relationship-aware retrieval (LightRAG-inspired)
+[[services]]
+binding = "GRAPH_RAG"
+service = "echo-graph-rag"
+
+# Additional bindings for /worker/call proxy.
+# Cloudflare blocks same-account Worker→Worker via public URL (error 1042),
+# so frequently-proxied workers must be bound here.
+[[services]]
+binding = "ECHO_CHAT"
+service = "echo-chat"
+
+[[services]]
+binding = "ECHO_SPEAK_CLOUD"
+service = "echo-speak-cloud"
+
+[[services]]
+binding = "ECHO_SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "ECHO_ENGINE_CLOUD"
+service = "echo-engine-cloud"
+
+[[services]]
+binding = "ECHO_DOCTRINE_FORGE"
+service = "echo-doctrine-forge"
+
+# Forge service bindings (all 8 forges — avoids CF error 1042)
+[[services]]
+binding = "FORGE_ENGINE"
+service = "echo-engine-forge"
+
+[[services]]
+binding = "FORGE_APP"
+service = "echo-app-forge"
+
+[[services]]
+binding = "FORGE_WORKER"
+service = "echo-worker-forge"
+
+[[services]]
+binding = "FORGE_HEPHAESTION"
+service = "hephaestion-forge"
+
+[[services]]
+binding = "FORGE_DAEDALUS"
+service = "daedalus-forge"
+
+[[services]]
+binding = "FORGE_PROMPT"
+service = "prompt-forge-omega"
+
+[[services]]
+binding = "FORGE_X"
+service = "forge-x-cloud"
+
+# AI Orchestrator for LLM routing (29 models + Claude)
+[[services]]
+binding = "ECHO_AI_ORCHESTRATOR"
+service = "echo-ai-orchestrator"
+
+# Forge Marketplace for commerce
+[[services]]
+binding = "FORGE_MARKETPLACE"
+service = "echo-forge-marketplace"
+
+# Tool Discovery for function catalog (1.37M functions)
+[[services]]
+binding = "TOOL_DISCOVERY"
+service = "echo-tool-discovery"
+
+# PayPal Worker for checkout/billing
+[[services]]
+binding = "ECHO_PAYPAL"
+service = "echo-paypal"
+
+# X200 Swarm Brain (200 agents, 13 AI providers, Trinity Council)
+[[services]]
+binding = "ECHO_X200_SWARM"
+service = "echo-x200-swarm-brain"
+
+# Arcanum (370+ prompt templates, forge DNA)
+[[services]]
+binding = "ECHO_ARCANUM"
+service = "echo-arcanum"
+
+# Mega Gateway (1,878 servers, 36,330 tools)
+[[services]]
+binding = "ECHO_MEGA_GATEWAY"
+service = "echo-mega-gateway-cloud"
+
+# Memory Cortex (7-tier cognitive memory)
+[[services]]
+binding = "ECHO_MEMORY_CORTEX"
+service = "echo-memory-cortex"
+
+# Fleet Commander (worker fleet management)
+[[services]]
+binding = "ECHO_FLEET_COMMANDER"
+service = "echo-fleet-commander"
+
+# KV namespace for rate limiting
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "a1ae0e82f33b46d8a11b9c6fee690541"
+
+# KV namespace for search result caching (<5ms reads)
+[[kv_namespaces]]
+binding = "SEARCH_CACHE"
+id = "06b54c08b63543e9a3bcfcd2af46ae3c"
+
+# D1 database for unified FTS5 search index
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-sdk-gateway"
+database_id = "fa8ef3a3-65b6-4d44-958f-c0ee68ec7569"
+
+# D1 database for SDK method catalog (221 methods across 30 modules)
+[[d1_databases]]
+binding = "SDK_CATALOG"
+database_name = "echo-sdk-catalog"
+database_id = "7fd6b492-907a-4949-a2bd-0990ec0a8c3b"
+
+# Vectorize for unified semantic search across all sources
+[[vectorize]]
+binding = "VECTORS"
+index_name = "sdk-gateway-vectors"
+
+# Workers AI for embedding generation
+[ai]
+binding = "AI"
+
+# Cron triggers for cache warming + index sync
+[triggers]
+crons = ["*/15 * * * *", "0 * * * *"]
+
+[vars]
+WORKER_VERSION = "3.1.0"

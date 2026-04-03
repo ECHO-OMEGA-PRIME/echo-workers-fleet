@@ -1,0 +1,28 @@
+name = "echo-build-orchestrator"
+main = "src/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "BUILD_DB"
+database_name = "echo-build-orchestrator"
+database_id = "19ed6232-576e-4b6e-9e85-a7e9c290f6df"
+
+[[r2_buckets]]
+binding = "BUILD_PLANS"
+bucket_name = "echo-build-plans"
+
+[[services]]
+binding = "SCANNER"
+service = "echo-343-scanner"
+
+[[services]]
+binding = "OMNISYNC"
+service = "omniscient-sync"
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "echo_metrics"
+
+[triggers]
+crons = ["*/10 * * * *"]
