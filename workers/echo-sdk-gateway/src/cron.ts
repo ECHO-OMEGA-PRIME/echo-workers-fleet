@@ -311,8 +311,10 @@ export async function handleScheduled(event: ScheduledEvent, env: Env): Promise<
   log('info', 'cron', 'Cron triggered', { cron: event.cron, time: new Date(event.scheduledTime).toISOString() });
 
   try {
-    // Ensure D1 schema exists
-    await ensureSchema(env.DB);
+    // L1 FIX: Only ensure schema on first hourly run, not every 15-min cron
+    if (event.cron === '0 * * * *') {
+      await ensureSchema(env.DB);
+    }
 
     if (event.cron === '0 * * * *') {
       // Full hourly sync: engines + knowledge + graph in parallel

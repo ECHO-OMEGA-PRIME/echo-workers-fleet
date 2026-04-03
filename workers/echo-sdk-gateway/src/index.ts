@@ -108,53 +108,22 @@ app.get('/health', async (c) => {
     }),
   );
 
-  const data = {
-    status: 'ok',
+  // L2 FIX: Health endpoint only returns status + version, no internal topology
+  const allHealthy = Object.values(services).every(s => s === 'healthy');
+  const anyUnreachable = Object.values(services).some(s => s === 'unreachable');
+
+  const healthData = {
+    status: allHealthy ? 'healthy' : anyUnreachable ? 'degraded' : 'partial',
     service: 'echo-sdk-gateway',
     version,
     timestamp: new Date().toISOString(),
-    gateway: 'echo-sdk-gateway',
-    services,
-    endpoints: {
-      engines: 7, brain: 4, knowledge: 2, search: 6, vault: 7,
-      worker: 1, sdk: 5, forge: 5, llm: 5, webhooks: 5,
-      versioning: 4, agi: 5, compose: 5, data: 4, functions: 4,
-      auth: 15, system: 2,
-      dedicated_routes: 89,
-      passthrough_proxies: {
-        'brain-full': '50+ (echo-shared-brain)',
-        swarm: '137 (echo-swarm-brain)',
-        x200: '23 (echo-x200-swarm-brain)',
-        chat: 'all (echo-chat)',
-        voice: 'all (echo-speak-cloud)',
-        graph: 'all (echo-graph-rag)',
-        arcanum: 'all (echo-arcanum)',
-        memory: 'all (echo-memory-cortex)',
-        mega: 'all (echo-mega-gateway-cloud)',
-        fleet: 'all (echo-fleet-commander)',
-        orchestrator: 'all (echo-ai-orchestrator)',
-        doctrine: 'all (echo-doctrine-forge)',
-        'engine-cloud': 'all (echo-engine-cloud)',
-        tools: 'all (echo-tool-discovery)',
-        marketplace: 'all (echo-forge-marketplace)',
-        hephaestion: 'all (hephaestion-forge) — 13-stage competitive pipeline',
-        daedalus: 'all (daedalus-forge) — 15 guilds, 1200 agents',
-        'forge-x': 'all (forge-x-cloud) — engine factory, 2613 engines',
-        'engine-forge': 'all (echo-engine-forge)',
-        'app-forge': 'all (echo-app-forge)',
-        'worker-forge': 'all (echo-worker-forge)',
-        'doctrine-forge': 'all (echo-doctrine-forge)',
-        'prompt-forge': 'all (prompt-forge-omega)',
-        paypal: 'all (echo-paypal)',
-      },
-      total_dedicated: 89,
-      total_passthrough_workers: 24,
-      total_proxied: '800+',
-      total_accessible: '900+',
-    },
+    services_healthy: Object.values(services).filter(s => s === 'healthy').length,
+    services_total: Object.keys(services).length,
   };
 
-  return c.json(success(data, version));
+  // L7 FIX (partial): Return 503 if degraded
+  const statusCode = healthData.status === 'healthy' ? 200 : 503;
+  return c.json(success(healthData, version), statusCode);
 });
 
 // GET /openapi.json — Self-hosted OpenAPI spec for GPT Actions import
@@ -162,6 +131,58 @@ app.get('/openapi.json', (c) => {
   const version = c.env.WORKER_VERSION || '1.0.0';
   const spec = getOpenApiSpec(version);
   return c.json(spec);
+});
+
+// F2: POST /init-schema — Initialize all D1 tables (auth required)
+app.post('/init-schema', async (c) => {
+  const version = c.env.WORKER_VERSION || '1.0.0';
+  try {
+    await c.env.DB.batch([
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS tenants (
+        id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL,
+        plan TEXT DEFAULT 'free', rate_limit INTEGER DEFAULT 60,
+        daily_limit INTEGER DEFAULT 500, monthly_limit INTEGER DEFAULT 10000,
+        status TEXT DEFAULT 'active', created_at TEXT DEFAULT (datetime('now'))
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS api_keys (
+        id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, name TEXT NOT NULL,
+        key_hash TEXT UNIQUE NOT NULL, key_prefix TEXT, scopes TEXT DEFAULT '[]',
+        status TEXT DEFAULT 'active', last_used_at TEXT, last_ip TEXT,
+        expires_at TEXT, rate_limit_override INTEGER, created_at TEXT DEFAULT (datetime('now')),
+        FOREIGN KEY (tenant_id) REFERENCES tenants(id)
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS api_key_usage (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, key_id TEXT, tenant_id TEXT,
+        endpoint TEXT, method TEXT, status_code INTEGER, ip TEXT,
+        created_at TEXT DEFAULT (datetime('now'))
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS usage_daily (
+        tenant_id TEXT, key_id TEXT, date TEXT,
+        request_count INTEGER DEFAULT 0, error_count INTEGER DEFAULT 0,
+        PRIMARY KEY (tenant_id, key_id, date)
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS usage_monthly (
+        tenant_id TEXT, date TEXT,
+        request_count INTEGER DEFAULT 0, error_count INTEGER DEFAULT 0,
+        PRIMARY KEY (tenant_id, date)
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS rate_limits (
+        key TEXT PRIMARY KEY, count INTEGER DEFAULT 0, window_start INTEGER
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS webhooks (
+        id TEXT PRIMARY KEY, url TEXT NOT NULL, events TEXT, secret TEXT,
+        active INTEGER DEFAULT 1, created_at TEXT, last_triggered TEXT, failure_count INTEGER DEFAULT 0
+      )`),
+      c.env.DB.prepare(`CREATE TABLE IF NOT EXISTS search_index (
+        id TEXT PRIMARY KEY, source TEXT NOT NULL, title TEXT NOT NULL,
+        snippet TEXT NOT NULL DEFAULT '', category TEXT DEFAULT '',
+        keywords TEXT DEFAULT '', updated_at TEXT DEFAULT (datetime('now'))
+      )`),
+    ]);
+    return c.json(success({ initialized: true, tables: 8 }, version));
+  } catch (e) {
+    return c.json({ success: false, error: 'Schema init failed' }, 500);
+  }
 });
 
 // ---------------------------------------------------------------------------
@@ -246,23 +267,40 @@ app.all('*', (c) => {
 // ---------------------------------------------------------------------------
 // Global error handler
 // ---------------------------------------------------------------------------
+// F1 FIX: GS343 error reporting
+async function reportToGS343(error: string, env: Env) {
+  try {
+    await fetch('https://echo-gs343.bmcii1976.workers.dev/errors/ingest', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Echo-API-Key': env.ECHO_API_KEY || env.API_KEY || '' },
+      body: JSON.stringify({ error: error.slice(0, 500), source: 'echo-sdk-gateway', category: 'worker_error' }),
+    });
+  } catch {} // fire-and-forget
+}
+
 app.onError((err, c) => {
   const version = c.env.WORKER_VERSION || '1.0.0';
+  const refId = crypto.randomUUID().slice(0, 8);
   console.error(
     JSON.stringify({
       ts: new Date().toISOString(),
       level: 'error',
       component: 'gateway',
+      ref_id: refId,
       message: `Unhandled error: ${err.message}`,
       stack: err.stack?.slice(0, 500),
     }),
   );
+
+  // F1: Report to GS343 for auto-healing
+  c.executionCtx.waitUntil(reportToGS343(`[${refId}] ${err.message}`, c.env));
+
   return c.json(
     {
       success: false,
       data: null,
       error: {
-        message: 'Internal server error',
+        message: `Internal server error (ref: ${refId})`,
         code: 'ECHO_INTERNAL_ERROR',
       },
       meta: {

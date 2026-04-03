@@ -1,6 +1,6 @@
 {
   "name": "echo-sdk-gateway",
-  "version": "1.0.0",
+  "version": "3.2.0",
   "description": "Echo SDK Gateway — Cloudflare Worker exposing Engine Runtime, Vault, Shared Brain, Knowledge Forge as REST API. GPT Action #7.",
   "private": true,
   "scripts": {
